@@ -8,14 +8,14 @@ import hpbandster.core.nameserver as hpns
 import hpbandster.core.result as hpres
 
 from hpbandster.optimizers import BOHB as BOHB
-from chemception_wroker import Chemception_wroker
+from chemception_transfer_worker import Chemception_wroker
 
 
 parser = argparse.ArgumentParser(description='Example 1 - sequential and local execution.')
 parser.add_argument('--min_budget',   type=float, help='Minimum budget used during the optimization.',    default=3)
 parser.add_argument('--max_budget',   type=float, help='Maximum budget used during the optimization.',    default=90)
 parser.add_argument('--n_iterations', type=int,   help='Number of iterations performed by the optimizer', default=4)
-parser.add_argument('--n_workers', type=int,   help='Number of workers to run in parallel.', default=4)
+parser.add_argument('--n_workers', type=int,   help='Number of workers to run in parallel.', default=1)
 
 args=parser.parse_args()
 
@@ -32,7 +32,7 @@ NS.start()
 # ID which is the same for all threads here.
 workers=[]
 for i in range(args.n_workers):
-    w = Chemception_wroker(sleep_interval = 0.5, nameserver='127.0.0.1',run_id='example2', id=i)
+    w = Chemception_wroker(sleep_interval = 0.5, nameserver='127.0.0.1', run_id='example2', id=i)
     w.run(background=True)
     workers.append(w)
 

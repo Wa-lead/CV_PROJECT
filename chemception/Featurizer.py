@@ -10,15 +10,16 @@ from rdkit.Chem import AllChem
 class ChemCeptionizer():
     
     """
-    This is the featurizer for the ChemCeption model. it takes a molecule and returns a 2D image of the molecule of 4 channels:
+    This is the featurizer for the ChemCeption model. it takes a molecule and returns a 2D mol of the molecule of 4 channels:
     1. Bond order
     2. Atom type
     3. Atom charge
     4. Atom hybridization
     """
-    def __init__(self, embed: float=12.0, res: float=0.5):
+    def __init__(self, embed: float=12.0, res: float=0.5, fuse=True):
         self.embed = embed
         self.res = res
+        self.fuse = fuse
 
     def featurize(self, mol):
         try:
@@ -55,6 +56,35 @@ class ChemCeptionizer():
                     hyptype = atom.GetHybridization().real
                     vect[ idx , idy, 2] = hyptype
             
-            return vect
+            if self.fuse:
+                vect = self.weighted_fusion(vect)
+                return vect
+            else:
+                return vect
         except:
             return None
+        
+    def weighted_fusion(self, mol, channel_4_weight=0.1):
+        
+        """
+        This is to change mol from 4 channels to 3 channels
+        the reason is to use other pretrained model
+        """
+        mol = mol.astype(np.float32)/255
+        
+        base_channel_weight = 1 - channel_4_weight
+        
+        new_channel_1 =  base_channel_weight* mol[:, :, 0] + channel_4_weight * mol[:, :, 3]
+        new_channel_2 =  base_channel_weight* mol[:, :, 1] + channel_4_weight * mol[:, :, 3]
+        new_channel_3 =  base_channel_weight* mol[:, :, 2] + channel_4_weight * mol[:, :, 3]
+
+        # normalize
+        new_channel_1 = (new_channel_1 - np.min(new_channel_1)) / (np.max(new_channel_1) - np.min(new_channel_1))
+        new_channel_2 = (new_channel_2 - np.min(new_channel_2)) / (np.max(new_channel_2) - np.min(new_channel_2))
+        new_channel_3 = (new_channel_3 - np.min(new_channel_3)) / (np.max(new_channel_3) - np.min(new_channel_3))
+        
+        # Create a new 3-channel mol
+        merged_mol = np.stack((new_channel_1, new_channel_2, new_channel_3), axis=-1)
+        merged_mol = merged_mol.astype(np.float32)
+        
+        return merged_mol        

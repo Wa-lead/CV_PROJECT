@@ -42,6 +42,8 @@ class Chemception():
         for _ in range(self.inceptionC_count):
             x = self.inceptionC(x)
         x = GlobalAveragePooling2D()(x)
+        x = Dense(self.N*2, activation='sigmoid')(x)
+        x = Dense(self.N, activation='sigmoid')(x)
         x = Dense(1, activation='sigmoid')(x)
         model = Model(input_layer, x)
         return model
