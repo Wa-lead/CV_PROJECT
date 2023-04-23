@@ -1,0 +1,9 @@
+README.md
+setup.py
+chemception/Featurizer.py
+chemception/chemception.py
+chemception.egg-info/PKG-INFO
+chemception.egg-info/SOURCES.txt
+chemception.egg-info/dependency_links.txt
+chemception.egg-info/not-zip-safe
+chemception.egg-info/top_level.txt
