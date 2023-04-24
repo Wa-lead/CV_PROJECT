@@ -80,7 +80,7 @@ class Chemception_wroker(Worker):
 
         return({
                     'loss': float(loss),  # this is the a mandatory field to run hyperband
-                    # 'info': config
+                    'info': config
                 })
     
     @staticmethod
