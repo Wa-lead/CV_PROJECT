@@ -30,16 +30,19 @@ class Chemception():
         # Apply Global Average Pooling ( according to arch )
         x = GlobalAveragePooling2D()(x)
         # Softmax
-        for i in range(self.dense_layers):
-            x = Dense(self.neurons/(i+1), activation='relu')(x)
-            x = Dropout(self.dropout)(x)
-        
+        # for i in range(self.dense_layers):
+        #     x = Dense(self.neurons/(i+1), activation='relu')(x)
+        #     x = Dropout(self.dropout)(x)
+        x = Dense(1024, activation='relu')(x)
+
         # A binary classifier (sigmoid)
-        predictions = Dense(1, activation='sigmoid')(x)
+        predictions = Dense(1, activation='softmax')(x)
         
         # This is the model we will train
         model = Model(inputs=base_model.input, outputs=predictions)
-        for layer in base_model.layers[:-2]:
+        
+        for layer in base_model.layers:
             layer.trainable = False
+
             
         return model
