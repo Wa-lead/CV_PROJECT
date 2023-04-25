@@ -12,8 +12,8 @@ from chemception_transfer_worker import Chemception_wroker
 
 
 parser = argparse.ArgumentParser(description='Example 1 - sequential and local execution.')
-parser.add_argument('--min_budget',   type=float, help='Minimum budget used during the optimization.',    default=3)
-parser.add_argument('--max_budget',   type=float, help='Maximum budget used during the optimization.',    default=90)
+parser.add_argument('--min_budget',   type=float, help='Minimum budget used during the optimization.',    default=6)
+parser.add_argument('--max_budget',   type=float, help='Maximum budget used during the optimization.',    default=114)
 parser.add_argument('--n_iterations', type=int,   help='Number of iterations performed by the optimizer', default=4)
 parser.add_argument('--n_workers', type=int,   help='Number of workers to run in parallel.', default=1)
 
@@ -26,7 +26,7 @@ NS.start()
 
 # Step 2: Start the workers
 # Now we can instantiate the specified number of workers. To emphasize the effect,
-# we introduce a sleep_interval of one second, which makes every function evaluation
+# we introduce a sleep_interval of one second, which makes every function c
 # take a bit of time. Note the additional id argument that helps separating the
 # individual workers. This is necessary because every worker uses its processes
 # ID which is the same for all threads here.
