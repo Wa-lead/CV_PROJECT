@@ -14,7 +14,7 @@ import ConfigSpace as CS
 from hpbandster.core.worker import Worker
 
 from chemception.chemception_transfer import Chemception
-from chemception.Featurizer import ChemCeptionizer
+from chemception.checmception_featurizer import ChemCeptionizer
 
 class Chemception_wroker(Worker):
 

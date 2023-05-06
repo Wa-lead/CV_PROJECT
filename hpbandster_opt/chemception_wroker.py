@@ -15,7 +15,7 @@ from hpbandster.core.worker import Worker
 from hpbandster.core.worker import Worker
 
 from chemception.chemception import Chemception
-from chemception.Featurizer import ChemCeptionizer
+from chemception.checmception_featurizer import ChemCeptionizer
 
 class Chemception_wroker(Worker):
 
