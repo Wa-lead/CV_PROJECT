@@ -38,3 +38,4 @@ The project achieves an ROC score of 0.69, indicating a good performance in pred
 
 # Usage
 Run the inference.ipynb
+![Capture-2023-05-17-132002](https://github.com/Wa-lead/Chemception_using_transfer_learning/assets/81301826/a4ad8699-cafb-49f8-96a7-dcf43304358a)
