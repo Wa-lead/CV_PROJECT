@@ -23,6 +23,11 @@ The project consists of several steps:
 
 ![Alt text](images/GradCAM.png)
 
+# Hyperparameter Optimization 
+We used the **Hpbandster** package for optimizing the model, which combines hyperband and bayesian optimization.
+
+![Alt text](images/hpbandster.png)
+
 
 # Installation
 To run the project, follow these steps:
