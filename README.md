@@ -1,6 +1,10 @@
 # Drug Discovery using Virtual Screening
 This project aims to develop a computational approach for drug discovery using virtual screening techniques. Virtual screening is a computational method that involves screening large chemical libraries to identify potential drug candidates. It can significantly reduce the time and cost required for the initial stages of drug discovery.
 
+
+https://github.com/Wa-lead/Virtual_screnning_using_CNNs/assets/81301826/f22e3a86-7025-4ca3-bb5b-7bba8055d0bd
+
+
 # Project Overview
 The project consists of several steps:
 
